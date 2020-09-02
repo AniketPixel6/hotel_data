@@ -66,12 +66,15 @@ fetch("hotels.json").then(function(resp){
 
 // markers end
 
+
+// initialize the map canvas to interact with later
 var canvas = map.getCanvasContainer();
 
 // an arbitrary start will always be the same
 // only the end or destination will change
 var start = [75.7139, 19.7515];
 
+// this is where the code for the next step will go
 // create a function to make a directions request
 function getRoute(end) {
   // make a directions request using cycling profile
@@ -208,6 +211,7 @@ map.on('click', function(e) {
   getRoute(coords);
 });
 
+// get the sidebar and add the instructions
 var instructions = document.getElementById('instructions');
 var steps = data.legs[0].steps;
 
@@ -216,7 +220,6 @@ for (var i = 0; i < steps.length; i++) {
   tripInstructions.push('<br><li>' + steps[i].maneuver.instruction) + '</li>';
   instructions.innerHTML = '<br><span class="duration">Trip duration: ' + Math.floor(data.duration / 60) + ' min 🚴 </span>' + tripInstructions;
 }
-
 
 </script>
 
