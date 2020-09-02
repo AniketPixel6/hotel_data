@@ -41,7 +41,7 @@ fetch("hotels.json").then(function(resp){
     for (i = 0; i < data.length; i++) {
         var marker = new mapboxgl.Marker()
         .setLngLat([data[i].longitude, data[i].latitude])
-        .setPopup(new mapboxgl.Popup().setHTML("<h1>",data[i].locality ,"</h1>"))
+        .setPopup(new mapboxgl.Popup().setHTML("<h1>" + data[i].locality  + "</h1>"))
         .addTo(map);
     }
 });
