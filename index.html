@@ -20,12 +20,12 @@ mapboxgl.accessToken = 'pk.eyJ1IjoiYW5pa2V0cDYiLCJhIjoiY2s4emdvODA5MWlwMjNub2tzd
     var map = new mapboxgl.Map({
         container: 'map',
         style: 'mapbox://styles/mapbox/streets-v11',
-        center: [12.550343, 55.665957],
+        center: [75.7139, 19.7515],
         zoom: 8
     });
 
     var marker = new mapboxgl.Marker()
-        .setLngLat([12.550343, 55.665957])
+        .setLngLat([data[0].longitude, data[0].latitude])
         .addTo(map);
 </script>
 
