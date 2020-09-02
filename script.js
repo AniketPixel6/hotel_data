@@ -14,15 +14,15 @@
 //  map script end
 
 // data script 
-fetch("hotels.json").then(function(resp){
-    console.log("first");
-    return resp.json();
-})
-.then(function(data){
-    console.log("Second");
-    console.log("dta lat", data);
+// fetch("hotels.json").then(function(resp){
+//     console.log("first");
+//     return resp.json();
+// })
+// .then(function(data){
+//     console.log("Second");
+//     console.log("dta lat", data);
 
-    console.log("dta lat", data[0].latitude);
-    console.log("dta long", data[0].longitude);
+//     console.log("dta lat", data[0].latitude);
+//     console.log("dta long", data[0].longitude);
 
-});
+// });
