@@ -20,7 +20,9 @@ fetch("hotels.json").then(function(resp){
 })
 .then(function(data){
     console.log("Second");
-    console.log("dta lat", data.latitude);
-    console.log("dta long", data.longitude);
+    console.log("dta lat", data);
+
+    console.log("dta lat", data[0].latitude);
+    console.log("dta long", data[0].longitude);
 
 });
