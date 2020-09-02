@@ -26,7 +26,7 @@ mapboxgl.accessToken = 'pk.eyJ1IjoiYW5pa2V0cDYiLCJhIjoiY2s4emdvODA5MWlwMjNub2tzd
 
     
 
-var data ;
+// var data ;
 fetch("hotels.json").then(function(resp){
     console.log("first");
     return resp.json();
@@ -45,9 +45,6 @@ fetch("hotels.json").then(function(resp){
         .addTo(map);
     }
 
-    // var marker = new mapboxgl.Marker()
-    //     .setLngLat([data[0].longitude, data[0].latitude])
-    //     .addTo(map);
 
 });
 
