@@ -16,6 +16,7 @@
 <div id="map"></div>
 <script>
 
+// create map
 mapboxgl.accessToken = 'pk.eyJ1IjoiYW5pa2V0cDYiLCJhIjoiY2s4emdvODA5MWlwMjNub2tzdXE1N2I5eiJ9.IrocfCfXkf_E3jEbZety_g';
     var map = new mapboxgl.Map({
         container: 'map',
@@ -24,19 +25,14 @@ mapboxgl.accessToken = 'pk.eyJ1IjoiYW5pa2V0cDYiLCJhIjoiY2s4emdvODA5MWlwMjNub2tzd
         zoom: 8
     });
 
-    
+// map cretate end 
 
-// var data ;
+// fetch data from json and add markers
 fetch("hotels.json").then(function(resp){
-    console.log("first");
     return resp.json();
 })
 .then(function(data){
-    console.log("Second");
     console.log("dta lat", data);
-
-    console.log("dta lat", data[0].latitude);
-    console.log("dta long", data[0].longitude);
 
     var i;
     for (i = 0; i < data.length; i++) {
@@ -44,11 +40,9 @@ fetch("hotels.json").then(function(resp){
         .setLngLat([data[i].longitude, data[i].latitude])
         .addTo(map);
     }
-
-
 });
 
-
+// markers end
 
 </script>
 
