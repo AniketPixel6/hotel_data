@@ -221,75 +221,7 @@ function getRoute(end) {
   req.send();
 }
 
-map.on('load', function() {
-  // make an initial directions request that
-  // starts and ends at the same location
-  getRoute(start);
 
-  // Add starting point to the map
-  map.addLayer({
-    id: 'point',
-    type: 'circle',
-    source: {
-      type: 'geojson',
-      data: {
-        type: 'FeatureCollection',
-        features: [{
-          type: 'Feature',
-          properties: {},
-          geometry: {
-            type: 'Point',
-            coordinates: start
-          }
-        }
-        ]
-      }
-    },
-    paint: {
-      'circle-radius': 10,
-      'circle-color': '#3887be'
-    }
-  });
-  // this is where the code from the next step will go
-
-  map.addSource('single-point', {
-      type: 'geojson',
-      data: {
-        type: 'FeatureCollection',
-        features: []
-      }
-    });
-
-    map.addLayer({
-      id: 'point',
-      source: 'single-point',
-      type: 'circle',
-      paint: {
-        'circle-radius': 10,
-        'circle-color': '#448ee4'
-      }
-    });
-
-    // Listen for the `result` event from the Geocoder
-    // `result` event is triggered when a user makes a selection
-    // Add a marker at the result's coordinates
-    geocoder.on('result', function(ev) {
-        console.log("result");
-        // console.log(result);
-        // console.log("ev.result");
-        console.log(ev.result.geometry.coordinates);
-      map.getSource('single-point').setData(ev.result.geometry);
-    });
-
-    geocoder2.on('result', function(ev) {
-        console.log("result");
-        // console.log(result);
-        // console.log("ev.result");
-        console.log(ev.result.geometry.coordinates);
-      map.getSource('single-point').setData(ev.result.geometry);
-    });
-
-});
 
 map.on('click', function(e) {
   var coordsObj = e.lngLat;
@@ -369,7 +301,75 @@ var geocoder = new MapboxGeocoder({ // Initialize the geocoder
 
 //    on load function
 
+map.on('load', function() {
+  // make an initial directions request that
+  // starts and ends at the same location
+  getRoute(start);
 
+  // Add starting point to the map
+  map.addLayer({
+    id: 'point',
+    type: 'circle',
+    source: {
+      type: 'geojson',
+      data: {
+        type: 'FeatureCollection',
+        features: [{
+          type: 'Feature',
+          properties: {},
+          geometry: {
+            type: 'Point',
+            coordinates: start
+          }
+        }
+        ]
+      }
+    },
+    paint: {
+      'circle-radius': 10,
+      'circle-color': '#3887be'
+    }
+  });
+  // this is where the code from the next step will go
+
+  map.addSource('single-point', {
+      type: 'geojson',
+      data: {
+        type: 'FeatureCollection',
+        features: []
+      }
+    });
+
+    map.addLayer({
+      id: 'point',
+      source: 'single-point',
+      type: 'circle',
+      paint: {
+        'circle-radius': 10,
+        'circle-color': '#448ee4'
+      }
+    });
+
+    // Listen for the `result` event from the Geocoder
+    // `result` event is triggered when a user makes a selection
+    // Add a marker at the result's coordinates
+    geocoder.on('result', function(ev) {
+        console.log("result");
+        // console.log(result);
+        // console.log("ev.result");
+        console.log(ev.result.geometry.coordinates);
+      map.getSource('single-point').setData(ev.result.geometry);
+    });
+
+    geocoder2.on('result', function(ev) {
+        console.log("result");
+        // console.log(result);
+        // console.log("ev.result");
+        console.log(ev.result.geometry.coordinates);
+      map.getSource('single-point').setData(ev.result.geometry);
+    });
+
+});
 
 </script>
 
