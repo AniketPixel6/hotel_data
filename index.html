@@ -38,17 +38,20 @@ fetch("hotels.json").then(function(resp){
     console.log("dta lat", data[0].latitude);
     console.log("dta long", data[0].longitude);
 
-    var marker = new mapboxgl.Marker()
-        .setLngLat([data[0].longitude, data[0].latitude])
+    var i;
+    for (i = 0; i < data.length; i++) {
+        var marker = new mapboxgl.Marker()
+        .setLngLat([data[i].longitude, data[i].latitude])
         .addTo(map);
+    }
+
+    // var marker = new mapboxgl.Marker()
+    //     .setLngLat([data[0].longitude, data[0].latitude])
+    //     .addTo(map);
 
 });
 
 
-// var marker = new mapboxgl.Marker()
-//         .setLngLat([data[0].longitude, data[0].latitude])
-//         .addTo(map);
-// console.log([data[0].longitude, data[0].latitude]);
 
 </script>
 
