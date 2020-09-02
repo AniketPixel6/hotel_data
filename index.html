@@ -224,6 +224,26 @@ function getRoute(end) {
 map.on('load', function() {
   // make an initial directions request that
   // starts and ends at the same location
+
+  geocoder.on('result', function(ev) {
+        console.log("result");
+        // console.log(result);
+        // console.log("ev.result");
+        console.log(ev.result.geometry.coordinates);
+      map.getSource('single-point').setData(ev.result.geometry);
+    });
+
+    geocoder2.on('result', function(ev) {
+        console.log("result");
+        // console.log(result);
+        // console.log("ev.result");
+        console.log(ev.result.geometry.coordinates);
+      map.getSource('single-point').setData(ev.result.geometry);
+    });
+
+
+
+
   getRoute(start);
 
   // Add starting point to the map
@@ -273,21 +293,21 @@ map.on('load', function() {
     // Listen for the `result` event from the Geocoder
     // `result` event is triggered when a user makes a selection
     // Add a marker at the result's coordinates
-    geocoder.on('result', function(ev) {
-        console.log("result");
-        // console.log(result);
-        // console.log("ev.result");
-        console.log(ev.result.geometry.coordinates);
-      map.getSource('single-point').setData(ev.result.geometry);
-    });
+    // geocoder.on('result', function(ev) {
+    //     console.log("result");
+    //     // console.log(result);
+    //     // console.log("ev.result");
+    //     console.log(ev.result.geometry.coordinates);
+    //   map.getSource('single-point').setData(ev.result.geometry);
+    // });
 
-    geocoder2.on('result', function(ev) {
-        console.log("result");
-        // console.log(result);
-        // console.log("ev.result");
-        console.log(ev.result.geometry.coordinates);
-      map.getSource('single-point').setData(ev.result.geometry);
-    });
+    // geocoder2.on('result', function(ev) {
+    //     console.log("result");
+    //     // console.log(result);
+    //     // console.log("ev.result");
+    //     console.log(ev.result.geometry.coordinates);
+    //   map.getSource('single-point').setData(ev.result.geometry);
+    // });
 
 });
 
@@ -339,14 +359,14 @@ map.on('click', function(e) {
 });
 
 // get the sidebar and add the instructions
-var instructions = document.getElementById('instructions');
-var steps = data.legs[0].steps;
+// var instructions = document.getElementById('instructions');
+// var steps = data.legs[0].steps;
 
-var tripInstructions = [];
-for (var i = 0; i < steps.length; i++) {
-  tripInstructions.push('<br><li>' + steps[i].maneuver.instruction) + '</li>';
-  instructions.innerHTML = '<br><span class="duration">Trip duration: ' + Math.floor(data.duration / 60) + ' min 🚴 </span>' + tripInstructions;
-}
+// var tripInstructions = [];
+// for (var i = 0; i < steps.length; i++) {
+//   tripInstructions.push('<br><li>' + steps[i].maneuver.instruction) + '</li>';
+//   instructions.innerHTML = '<br><span class="duration">Trip duration: ' + Math.floor(data.duration / 60) + ' min 🚴 </span>' + tripInstructions;
+// }
 
 // search box
 var geocoder = new MapboxGeocoder({ // Initialize the geocoder
