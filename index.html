@@ -119,10 +119,15 @@ fetch("hotels.json").then(function(resp){
         .setPopup(new mapboxgl.Popup().setHTML("<h4>" + data[i].locality  + "</h4>"))
         .addTo(map);
     }
-})
-.then(function (){
-  var start_point;
-  var end_point;
+});
+// initialize the map canvas 
+var canvas = map.getCanvasContainer();
+var start_point;
+var end_point;
+
+map.on('load', function() {
+ 
+  
 
   geocoder.on('result', function(ev) {
       console.log("result");
@@ -133,24 +138,13 @@ fetch("hotels.json").then(function(resp){
     
   geocoder2.on('result', function(ev) {
       console.log("result");
+      // console.log(result);
+      // console.log("ev.result");
       
     map.getSource('single-point').setData(ev.result.geometry);
     var end_point = ev.result.geometry.coordinates;
     console.log(end_point);
   });
-
-  getRoute(start_point, end_point);
-
-})
-// initialize the map canvas 
-var canvas = map.getCanvasContainer();
-
-
-map.on('load', function() {
- 
-  
-
-  
     
 
 
