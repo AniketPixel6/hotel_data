@@ -121,8 +121,8 @@ var geocoder = new MapboxGeocoder({ // Initialize the geocoder
     placeholder: 'End point', // Placeholder text for the search bar 
   });
   // Add the geocoder to the map
-  // map.addControl(geocoder);
-  // map.addControl(geocoder2);
+  map.addControl(geocoder);
+  map.addControl(geocoder2);
 
 
 map.on('load', function() {
@@ -150,8 +150,6 @@ map.on('load', function() {
     
   geocoder2.on('result', function(ev) {
       console.log("result");
-      // console.log(result);
-      // console.log("ev.result");
       
     map.getSource('single-point').setData(ev.result.geometry);
     var end_point = ev.result.geometry.coordinates;
