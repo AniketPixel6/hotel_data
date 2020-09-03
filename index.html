@@ -106,7 +106,23 @@ mapboxgl.accessToken = 'pk.eyJ1IjoiYW5pa2V0cDYiLCJhIjoiY2s4emdvODA5MWlwMjNub2tzd
         zoom: 5
     });
 
-// fetch data from json and add markers
+
+// search box
+var geocoder = new MapboxGeocoder({ // Initialize the geocoder
+    accessToken: mapboxgl.accessToken, // Set the access token
+    mapboxgl: mapboxgl, // Set the mapbox-gl instance
+    marker: false, // Do not use the default marker style
+    placeholder: 'Starting point', // Placeholder text for the search bar
+  });
+  var geocoder2 = new MapboxGeocoder({ // Initialize the geocoder
+    accessToken: mapboxgl.accessToken, // Set the access token
+    mapboxgl: mapboxgl, // Set the mapbox-gl instance
+    marker: true, // Do not use the default marker style
+    placeholder: 'End point', // Placeholder text for the search bar 
+  });
+  // Add the geocoder to the map
+  // map.addControl(geocoder);
+  // map.addControl(geocoder2);
 
 
 map.on('load', function() {
@@ -123,6 +139,23 @@ map.on('load', function() {
           .setPopup(new mapboxgl.Popup().setHTML("<h4>" + data[i].locality  + "</h4>"))
           .addTo(map);
       }
+  });
+  // search box
+  geocoder.on('result', function(ev) {
+      console.log("result");        
+      map.getSource('single-point').setData(ev.result.geometry);
+      var start_point = ev.result.geometry.coordinates;
+      console.log(start_point);
+    });
+    
+  geocoder2.on('result', function(ev) {
+      console.log("result");
+      // console.log(result);
+      // console.log("ev.result");
+      
+    map.getSource('single-point').setData(ev.result.geometry);
+    var end_point = ev.result.geometry.coordinates;
+    console.log(end_point);
   });
 
 });
