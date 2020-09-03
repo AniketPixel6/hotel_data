@@ -147,14 +147,14 @@ map.on('load', function() {
       console.log("result");  
       console.log(ev.result.geometry); 
       console.log(ev.result.center); 
-      map.getSource('single-point').setData(ev.result.geometry);
+      // map.getSource('single-point').setData(ev.result.geometry);
       // var start_point = ev.result.geometry.coordinates;
     });
     
   geocoder2.on('result', function(ev) {
       console.log("result");  
       console.log(ev.result.center);    
-    map.getSource('single-point').setData(ev.result.geometry);
+    // map.getSource('single-point').setData(ev.result.geometry);
   });
 
 });
