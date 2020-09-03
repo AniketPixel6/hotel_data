@@ -181,10 +181,10 @@ var geocoder = new MapboxGeocoder({ // Initialize the geocoder
   //   placeholder: 'End point', // Placeholder text for the search bar 
   // });
   // // Add the geocoder to the map
-  // map.addControl(geocoder);
-  // map.addControl(geocoder2);
-  document.getElementById('geocoder1').appendChild(geocoder.onAdd(map));
-  document.getElementById('geocoder2').appendChild(geocoder2.onAdd(map));
+  map.addControl(geocoder);
+  map.addControl(geocoder2);
+  // document.getElementById('geocoder1').appendChild(geocoder.onAdd(map));
+  // document.getElementById('geocoder2').appendChild(geocoder2.onAdd(map));
 
 </script>
 
