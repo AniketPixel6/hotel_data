@@ -317,14 +317,14 @@ map.on('load', function() {
         console.log("result");        
         map.getSource('single-point').setData(ev.result.geometry);
         var start_point = ev.result.geometry.coordinates;
-        console.log(start_point);
+        console.log("start point" +start_point);
     });    
 
     geocoder2.on('result', function(ev) {
         console.log("result");        
         map.getSource('single-point').setData(ev.result.geometry);
         var end_point = ev.result.geometry.coordinates;
-        console.log(end_point);
+        console.log("end point" +end_point);
     });
     
 
