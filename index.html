@@ -168,14 +168,14 @@ var geocoder = new MapboxGeocoder({ // Initialize the geocoder
     accessToken: mapboxgl.accessToken, // Set the access token
     mapboxgl: mapboxgl, // Set the mapbox-gl instance
     marker: true, // Do not use the default marker style
-    placeholder: 'Starting point', // Placeholder text for the search bar
+    placeholder: 'Starting from', // Placeholder text for the search bar
   });
 
   var geocoder2 = new MapboxGeocoder({ // Initialize the geocoder
     accessToken: mapboxgl.accessToken, // Set the access token
     mapboxgl: mapboxgl, // Set the mapbox-gl instance
     marker: true, // Do not use the default marker style
-    placeholder: 'End point', // Placeholder text for the search bar 
+    placeholder: 'Destination', // Placeholder text for the search bar 
   });
 
 
@@ -202,7 +202,8 @@ var geocoder = new MapboxGeocoder({ // Initialize the geocoder
             var duration = jsonResponse.routes[0].duration/60;
             var steps = jsonResponse.routes[0].legs[0].steps;
             var coords = jsonResponse.routes[0].geometry;
-          //  console.log(steps);
+        console.log(jsonResponse.routes);
+        console.log(steps);
         console.log(coords);
          //  console.log(distance);
           // console.log(duration);
@@ -212,7 +213,7 @@ var geocoder = new MapboxGeocoder({ // Initialize the geocoder
                 instructions.insertAdjacentHTML('beforeend', '<p>' + step.maneuver.instruction + '</p>');
             });
             // get distance and duration
-            instructions.insertAdjacentHTML('beforeend', '<p>' +  'Distance: ' + distance.toFixed(2) + ' km<br>Duration: ' + duration.toFixed(2) + ' minutes' + '</p>');
+            instructions.insertAdjacentHTML('beforeend', '<h2>' +  'Distance: ' + distance.toFixed(2) + ' km<br>Duration: ' + duration.toFixed(2) + ' minutes' + '</h2>');
 
             // add the route to the map
             addRoute(coords);
@@ -223,6 +224,8 @@ var geocoder = new MapboxGeocoder({ // Initialize the geocoder
     }
 
     function addRoute (coords) {
+
+      
         // check if the route is already loaded
         if (map.getSource('route')) {
             map.removeLayer('route');
@@ -246,7 +249,8 @@ var geocoder = new MapboxGeocoder({ // Initialize the geocoder
                 "paint": {
                     "line-color": "#4668f2",
                     "line-width": 8,
-                    "line-opacity": 0.8
+                    "line-opacity": 0.8,
+                    "line-offset": 2
                 }
             });
         };
