@@ -119,15 +119,10 @@ fetch("hotels.json").then(function(resp){
         .setPopup(new mapboxgl.Popup().setHTML("<h4>" + data[i].locality  + "</h4>"))
         .addTo(map);
     }
-});
-// initialize the map canvas 
-var canvas = map.getCanvasContainer();
-var start_point;
-var end_point;
-
-map.on('load', function() {
- 
-  
+})
+.then(function (){
+  var start_point;
+  var end_point;
 
   geocoder.on('result', function(ev) {
       console.log("result");
@@ -138,13 +133,24 @@ map.on('load', function() {
     
   geocoder2.on('result', function(ev) {
       console.log("result");
-      // console.log(result);
-      // console.log("ev.result");
       
     map.getSource('single-point').setData(ev.result.geometry);
     var end_point = ev.result.geometry.coordinates;
     console.log(end_point);
   });
+
+  getRoute(start_point, end_point);
+
+})
+// initialize the map canvas 
+var canvas = map.getCanvasContainer();
+
+
+map.on('load', function() {
+ 
+  
+
+  
     
 
 
@@ -209,7 +215,7 @@ map.on('load', function() {
 
 // this is where the code for the next step will go
 // create a function to make a directions request
-function getRoute(end) {
+function getRoute(start_point, end_point) {
   // make a directions request using cycling profile
   // an arbitrary start will always be the same
   // only the end or destination will change
