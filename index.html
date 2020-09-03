@@ -157,7 +157,8 @@ function getRoute(end) {
   // make a directions request using cycling profile
   // an arbitrary start will always be the same
   // only the end or destination will change
-  var start = [75.7139, 19.7515];
+  var start = start_point;
+  var end = end_point;
   var url = 'https://api.mapbox.com/directions/v5/mapbox/cycling/' + start[0] + ',' + start[1] + ';' + end[0] + ',' + end[1] + '?steps=true&geometries=geojson&access_token=' + mapboxgl.accessToken;
 
   // make an XHR request https://developer.mozilla.org/en-US/docs/Web/API/XMLHttpRequest
@@ -221,8 +222,9 @@ map.on('load', function() {
         
       map.getSource('single-point').setData(ev.result.geometry);
       var start_point = ev.result.geometry.coordinates;
+      console.log(start_point);
     });
-    console.log(start_point);
+    
     geocoder2.on('result', function(ev) {
         console.log("result");
         // console.log(result);
@@ -230,8 +232,9 @@ map.on('load', function() {
         
       map.getSource('single-point').setData(ev.result.geometry);
       var end_point = ev.result.geometry.coordinates;
+      console.log(end_point);
     });
-    console.log(end_point);
+    
 
 
 
@@ -303,52 +306,52 @@ map.on('load', function() {
 
 });
 
-map.on('click', function(e) {
-  var coordsObj = e.lngLat;
-  canvas.style.cursor = '';
-  var coords = Object.keys(coordsObj).map(function(key) {
-    return coordsObj[key];
-  });
-  var end = {
-    type: 'FeatureCollection',
-    features: [{
-      type: 'Feature',
-      properties: {},
-      geometry: {
-        type: 'Point',
-        coordinates: coords
-      }
-    }
-    ]
-  };
-  if (map.getLayer('end')) {
-    map.getSource('end').setData(end);
-  } else {
-    map.addLayer({
-      id: 'end',
-      type: 'circle',
-      source: {
-        type: 'geojson',
-        data: {
-          type: 'FeatureCollection',
-          features: [{
-            type: 'Feature',
-            properties: {},
-            geometry: {
-              type: 'Point',
-              coordinates: coords
-            }
-          }]
-        }
-      },
-      paint: {
-        'circle-radius': 10,
-        'circle-color': '#f30'
-      }
-    });
-  }
-  getRoute(coords);
-});
+// map.on('click', function(e) {
+//   var coordsObj = e.lngLat;
+//   canvas.style.cursor = '';
+//   var coords = Object.keys(coordsObj).map(function(key) {
+//     return coordsObj[key];
+//   });
+//   var end = {
+//     type: 'FeatureCollection',
+//     features: [{
+//       type: 'Feature',
+//       properties: {},
+//       geometry: {
+//         type: 'Point',
+//         coordinates: coords
+//       }
+//     }
+//     ]
+//   };
+//   if (map.getLayer('end')) {
+//     map.getSource('end').setData(end);
+//   } else {
+//     map.addLayer({
+//       id: 'end',
+//       type: 'circle',
+//       source: {
+//         type: 'geojson',
+//         data: {
+//           type: 'FeatureCollection',
+//           features: [{
+//             type: 'Feature',
+//             properties: {},
+//             geometry: {
+//               type: 'Point',
+//               coordinates: coords
+//             }
+//           }]
+//         }
+//       },
+//       paint: {
+//         'circle-radius': 10,
+//         'circle-color': '#f30'
+//       }
+//     });
+//   }
+//   getRoute(coords);
+// });
 
 // get the sidebar and add the instructions
 // var instructions = document.getElementById('instructions');
