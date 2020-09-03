@@ -106,11 +106,6 @@ mapboxgl.accessToken = 'pk.eyJ1IjoiYW5pa2V0cDYiLCJhIjoiY2s4emdvODA5MWlwMjNub2tzd
         zoom: 5
     });
 
-
-
-
-map.on('load', function() {
-
   fetch("hotels.json").then(function(resp){
     return resp.json();
   })
@@ -124,21 +119,29 @@ map.on('load', function() {
           .addTo(map);
       }
   });
+  var geocoder = new MapboxGeocoder({ // Initialize the geocoder
+    accessToken: mapboxgl.accessToken, // Set the access token
+    mapboxgl: mapboxgl, // Set the mapbox-gl instance
+    marker: ture, // Do not use the default marker style
+    placeholder: 'Starting point', // Placeholder text for the search bar
+  });
+
+map.on('load', function() {
+  
   // search box
   geocoder.on('result', function(ev) {
       console.log("result");        
       map.getSource('single-point').setData(ev.result.geometry);
       // var start_point = ev.result.geometry.coordinates;
-      console.log(start_point);
     });
     
-  geocoder2.on('result', function(ev) {
-      console.log("result");
+  // geocoder2.on('result', function(ev) {
+  //     console.log("result");
       
-    map.getSource('single-point').setData(ev.result.geometry);
-    // var end_point = ev.result.geometry.coordinates;
-    console.log(end_point);
-  });
+  //   map.getSource('single-point').setData(ev.result.geometry);
+  //   // var end_point = ev.result.geometry.coordinates;
+  //   console.log(end_point);
+  // });
 
 });
 
