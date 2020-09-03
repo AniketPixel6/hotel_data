@@ -136,12 +136,7 @@ mapboxgl.accessToken = 'pk.eyJ1IjoiYW5pa2V0cDYiLCJhIjoiY2s4emdvODA5MWlwMjNub2tzd
       }
   });
 
-  var geocoder = new MapboxGeocoder({ // Initialize the geocoder
-    accessToken: mapboxgl.accessToken, // Set the access token
-    // mapboxgl: mapboxgl, // Set the mapbox-gl instance
-    // marker: marker, // Do not use the default marker style
-    placeholder: 'Starting point', // Placeholder text for the search bar
-  });
+
 
 map.on('load', function() {
   
@@ -164,6 +159,12 @@ map.on('load', function() {
   // });
 
 });
+var geocoder = new MapboxGeocoder({ // Initialize the geocoder
+    accessToken: mapboxgl.accessToken, // Set the access token
+    // mapboxgl: mapboxgl, // Set the mapbox-gl instance
+    // marker: marker, // Do not use the default marker style
+    placeholder: 'Starting point', // Placeholder text for the search bar
+  });
 
 // search box
 
