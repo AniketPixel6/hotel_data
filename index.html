@@ -217,17 +217,18 @@ map.on('load', function() {
         console.log("result");
         // console.log(result);
         // console.log("ev.result");
-        console.log(ev.result.geometry.coordinates);
+        var start_point = ev.result.geometry.coordinates;
       map.getSource('single-point').setData(ev.result.geometry);
     });
-
+    console.log(start_point);
     geocoder2.on('result', function(ev) {
         console.log("result");
         // console.log(result);
         // console.log("ev.result");
-        console.log(ev.result.geometry.coordinates);
+        var end_point = ev.result.geometry.coordinates;
       map.getSource('single-point').setData(ev.result.geometry);
     });
+    console.log(end_point);
 
 
 
