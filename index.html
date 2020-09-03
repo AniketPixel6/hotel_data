@@ -107,7 +107,9 @@
 <body>
     <div id="map"></div>
     <div class="geocoder">
-      <div id="geocoder" ></div>
+      <div id="geocoder1" ></div>
+      <div id="geocoder2" ></div>
+
     </div>
     <div id="instructions"></div>
 
@@ -145,25 +147,29 @@ map.on('load', function() {
       console.log("result");  
       console.log(ev.result.geometry); 
       console.log(ev.result.center); 
-
       map.getSource('single-point').setData(ev.result.geometry);
       // var start_point = ev.result.geometry.coordinates;
     });
     
-  // geocoder2.on('result', function(ev) {
-  //     console.log("result");
-      
-  //   map.getSource('single-point').setData(ev.result.geometry);
-  //   // var end_point = ev.result.geometry.coordinates;
-  //   console.log(end_point);
-  // });
+  geocoder2.on('result', function(ev) {
+      console.log("result");  
+      console.log(ev.result.center);    
+    map.getSource('single-point').setData(ev.result.geometry);
+  });
 
 });
 var geocoder = new MapboxGeocoder({ // Initialize the geocoder
     accessToken: mapboxgl.accessToken, // Set the access token
-    // mapboxgl: mapboxgl, // Set the mapbox-gl instance
-    // marker: marker, // Do not use the default marker style
+    mapboxgl: mapboxgl, // Set the mapbox-gl instance
+    marker: true, // Do not use the default marker style
     placeholder: 'Starting point', // Placeholder text for the search bar
+  });
+
+  var geocoder2 = new MapboxGeocoder({ // Initialize the geocoder
+    accessToken: mapboxgl.accessToken, // Set the access token
+    mapboxgl: mapboxgl, // Set the mapbox-gl instance
+    marker: true, // Do not use the default marker style
+    placeholder: 'End point', // Placeholder text for the search bar 
   });
 
 // search box
@@ -177,7 +183,9 @@ var geocoder = new MapboxGeocoder({ // Initialize the geocoder
   // // Add the geocoder to the map
   // map.addControl(geocoder);
   // map.addControl(geocoder2);
-  document.getElementById('geocoder').appendChild(geocoder.onAdd(map));
+  document.getElementById('geocoder1').appendChild(geocoder.onAdd(map));
+  document.getElementById('geocoder2').appendChild(geocoder2.onAdd(map));
+
 </script>
 
 
