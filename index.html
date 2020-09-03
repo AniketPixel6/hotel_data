@@ -212,7 +212,8 @@ function getRoute(end) {
 map.on('load', function() {
   // make an initial directions request that
   // starts and ends at the same location
-
+  var start_point;
+  var end_point;
   geocoder.on('result', function(ev) {
         console.log("result");
         // console.log(result);
